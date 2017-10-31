@@ -37,7 +37,7 @@ import javax.mail.internet.MimeMultipart;
 public class SendEmail extends HttpServlet {
 	final static String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 	final static String username = "financialnewslettertest@gmail.com";//
-	final static String password = "numeroalto1";
+	final static String password = "";
 static Session session;
 	private static void connessione(){
 		Properties props = System.getProperties();
