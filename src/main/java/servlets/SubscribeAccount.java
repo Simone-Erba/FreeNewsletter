@@ -38,7 +38,7 @@ public class SubscribeAccount extends HttpServlet {
 		String pass=request.getParameter("pass");
 		String email=request.getParameter("email");
 		System.out.println(email);
-		ReaderXMLtest r=new ReaderXMLtest();
+		ReaderXMLtest r=ReaderXMLtest.getInstance();
 		ServletContext context = getServletContext();
 		String fullPath = d.getUrl()+"/Users.xml";
 		System.out.println(fullPath);

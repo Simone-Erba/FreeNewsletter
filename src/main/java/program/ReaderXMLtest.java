@@ -15,6 +15,14 @@ import javax.xml.transform.stream.*;
 import org.xml.sax.*;
 import org.w3c.dom.*;
 public class ReaderXMLtest {
+	static ReaderXMLtest istanza;
+	public static synchronized ReaderXMLtest getInstance() {
+		if (istanza == null) {
+			istanza = new ReaderXMLtest();
+		}
+		return istanza;
+	}
+	private ReaderXMLtest(){}
 	public void createLetter(String letter, String fullPath) {
 		Document dom=readXML(fullPath);
 		Element users=dom.getDocumentElement();

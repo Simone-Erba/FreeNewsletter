@@ -60,7 +60,7 @@ public class RemovePdfNoXml extends HttpServlet {
 		request.setAttribute("file1", filePart);
 		RequestDispatcher rd = request.getRequestDispatcher("./UploadPdf?mod=true");
 		rd.forward(request,response);
-		ReaderXMLtest r=new ReaderXMLtest();
+		ReaderXMLtest r=ReaderXMLtest.getInstance();
 		String fullPath=context.getRealPath("files/Files.xml");
 		r.modifyLetter(name, newname, fullPath);	
 	
@@ -93,7 +93,7 @@ public class RemovePdfNoXml extends HttpServlet {
 		request.setAttribute("n", n);
 		RequestDispatcher rd = request.getRequestDispatcher("./UploadPdf");
 		rd.forward(request,response);
-		ReaderXMLtest r=new ReaderXMLtest();
+		ReaderXMLtest r=ReaderXMLtest.getInstance();
 		String fullPath=context.getRealPath("files/Files.xml");
 		r.modifyLetter(name, newname, fullPath);
 	}

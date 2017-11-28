@@ -44,7 +44,7 @@ public class CheckAccounts extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ReaderXMLtest r=new ReaderXMLtest();
+		ReaderXMLtest r=ReaderXMLtest.getInstance();
 		ServletContext context = getServletContext();
 		String fullPath = context.getRealPath("files/Users.xml");
     	List<User> users=r.readUsers(fullPath);

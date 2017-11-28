@@ -41,7 +41,7 @@ public class ListUsers extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Data d=new Data();
 		PrintWriter out = response.getWriter();
-				ReaderXMLtest x=new ReaderXMLtest();
+		ReaderXMLtest x=ReaderXMLtest.getInstance();
 				ServletContext context = getServletContext();
 				String fullPath = d.getUrl()+"/Users.xml";
 				List<User> files=x.readUsers(context.getRealPath("files/Users.xml"));

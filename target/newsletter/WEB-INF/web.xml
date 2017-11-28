@@ -815,12 +815,6 @@ standard deployment descriptor.
   </servlet>
   <servlet>
     <description></description>
-    <display-name>wwww</display-name>
-    <servlet-name>wwww</servlet-name>
-    <servlet-class>servlets.wwww</servlet-class>
-  </servlet>
-  <servlet>
-    <description></description>
     <display-name>RemoveAccount</display-name>
     <servlet-name>RemoveAccount</servlet-name>
     <servlet-class>servlets.RemoveAccount</servlet-class>
@@ -856,10 +850,6 @@ standard deployment descriptor.
     <url-pattern>/UploadPdf</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>wwww</servlet-name>
-    <url-pattern>/wwww</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
     <servlet-name>RemoveAccount</servlet-name>
     <url-pattern>/RemoveAccount</url-pattern>
   </servlet-mapping>
@@ -868,9 +858,8 @@ standard deployment descriptor.
     <url-pattern>/AuthUser</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
     <welcome-file>Index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>Index.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="lib/sha256.js"></script>
+<script src="lib/jquery-3.2.1.min.js"></script>
 <meta charset="ISO-8859-1">
 <title>Home page</title>
     <link rel="stylesheet" type="text/css" href="css/demo.css">
@@ -8,6 +10,7 @@
 <body>
 	<p><strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Newsletter Vidya </strong></p>
 <p>&nbsp;</p>
+<br>
 <p><strong>Cos&rsquo;&egrave; la Newsletter Vidya </strong></p>
 <p>&nbsp;</p>
 <p><span style="font-weight: 400;">La newsletter Vidya Capital &egrave; una pubblicazione trimestrale che si ispira alla filosofia del Value Investing. Si compone di due parti principali:</span></p>
@@ -86,17 +89,50 @@
 
 <br>
 
-		<form action="./AuthUser" method="post" class="poz">
-				<a href="./payment.jsp">Iscriviti</a><br>
-		
-				<a href="./Admin.html">administrator access</a><br>
-    Insersci la tua mail: <input name="email" id="txt" type="email" required><br>
-		<button id="VPinvia" type="submit">
+		<p class="poz">
+				<a href="./payment.html">Iscriviti</a><br>
+			password amministratore: <input name="passAdmin" id="passAdmin" type="password" required><br>
+<button id="VPinvia2">
+			Accedi
+		</button>	<br>		Utente registrato:
+				<br>
+    Inserisci la tua mail: <input name="email" id="txt" type="email" required><br>
+	Inserisci la password: <input name="pass" id="pass" type="password" required><br>
+		<button id="VPinvia">
 			Accedi
 		</button>
-</form>
+		</p>
 <script>
+document.getElementById("VPinvia2").onclick=function(){
+	var pass=document.getElementById("passAdmin").value;
+	var hash=sha256(pass+'12358132144');
+	console.log(hash);
+	window.location.replace('AuthAdmin?pass='+hash);
+};
+document.getElementById("VPinvia").onclick=function(){
+	var mail=document.getElementById("txt").value;
+	var pass=document.getElementById("pass").value;
+	var hash=sha256(mail+pass+'12358132144');
+	console.log(hash);
+	window.location.replace("AuthUser?mail="+mail+'&pass='+hash);
+	/*$.ajax(
+			{
+				url: "./AuthUser?mail="+mail+"&pass="+hash,
+		        type: 'GET',
+          	     dataType: 'json', 
+				success: function(data)
+				{
+					var code=data.code;
+					console.log(code);
+					if(code=="200")
+						{
+						var mail=data.mail;
+						//chiamo servlet con window.location.replace, faccio rediregere a lui, setto attr e leggo attr in user.jsp 
+						window.location.replace("User.jsp?mail="+mail);
+						}
+				},
+			});*/
+};
 </script>
 </body>
-
 </html>

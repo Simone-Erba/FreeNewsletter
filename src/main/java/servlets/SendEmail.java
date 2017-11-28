@@ -9,6 +9,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import program.FilePdf;
+import program.PropertiesReader;
 import program.ReaderXMLtest;
 import program.User;
 
@@ -36,8 +37,8 @@ import javax.mail.internet.MimeMultipart;
  
 public class SendEmail extends HttpServlet {
 	final static String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
-	final static String username = "";
-	final static String password = "";
+	static String username = "";
+	static String password = "";
 static Session session;
 	private static void connessione(){
 		Properties props = System.getProperties();
@@ -51,7 +52,9 @@ static Session session;
 		props.put("mail.debug", "true");
 		props.put("mail.store.protocol", "pop3");
 		props.put("mail.transport.protocol", "smtp");
-
+		PropertiesReader r=PropertiesReader.getInstance();
+		username=r.get("user");
+		password=r.get("passmail");
 		session = Session.getDefaultInstance(props, 
 				new Authenticator(){
 			protected PasswordAuthentication getPasswordAuthentication() {
@@ -73,7 +76,7 @@ static Session session;
 		if(localDate.getDayOfMonth()==10&&m==9||(localDate.getDayOfMonth()==1&&(m==1||m==4||m==7||m==10)))
 		{
 	   connessione();
-	   ReaderXMLtest r=new ReaderXMLtest();
+		ReaderXMLtest r=ReaderXMLtest.getInstance();
 	   ServletContext context = getServletContext();
 		String fullPath = context.getRealPath("files/Users.xml");
         List<FilePdf> a=r.readFiles(context.getRealPath("files/Files.xml"));
@@ -107,7 +110,7 @@ static Session session;
 
 		// -- Set the FROM and TO fields --
 		try {
-			msg.setFrom(new InternetAddress("financialnewslettertest@gmail.com"));
+			msg.setFrom(new InternetAddress(username));
 			msg.setSentDate(new Date());
 			
 					msg.setRecipients(Message.RecipientType.TO, 

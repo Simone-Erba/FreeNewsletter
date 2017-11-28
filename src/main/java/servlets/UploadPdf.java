@@ -105,7 +105,7 @@ public class UploadPdf extends HttpServlet {
 		            out.write(bytes, 0, read);
 		        }
 		        writer.println("New file " + fileName + " created at " + webInfPath);
-		        ReaderXMLtest r=new ReaderXMLtest();
+				ReaderXMLtest r=ReaderXMLtest.getInstance();
 		        System.out.println("pathxml  "+pathxml);
 		     if(mod==null)
 		     {   

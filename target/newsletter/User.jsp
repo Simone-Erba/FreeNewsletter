@@ -20,8 +20,33 @@ Il tuo abbonamento scade il:
 </div>
 
 <script>
-var mail=<%=request.getAttribute("mail")%>;
-document.getElementById('form1').action = './RemoveAccount?mail=' + mail;
+function getParam(variable)
+{
+	var query=window.location.search.substring(1);
+	var vars=query.split("&");
+	for(var i=0;i<vars.length;i++)
+	{
+		var pair=vars[i].split("=");
+		if(pair[0]==variable)
+		{
+			return pair[1];	
+		}
+	}
+}
+<%
+//allow access only if session exists
+String user = "\""+(String) session.getAttribute("mail")+"\"";
+String userName = null;
+Cookie[] cookies = request.getCookies();
+if(cookies !=null){
+for(Cookie cookie : cookies){
+	if(cookie.getName().equals("mail")) userName = cookie.getValue();
+}
+}
+%>
+//var mail=<%=request.getAttribute("mail")%>;
+var mail=getParam("mail");
+document.getElementById('form1').action = './RemoveAccount?mail=' + <%=user%>;
 $.ajax({
     url: "./ListUsers",
     headers: {
@@ -34,7 +59,7 @@ $.ajax({
          console.log("success");
          for(var i=0;i<data.length;i++)
         {
-        	 if(data[i].mail==mail)
+        	 if(data[i].mail==<%=user%>)
         		 {
             	 document.getElementById("scad").innerHTML=data[i].scad;
         		 }

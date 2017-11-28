@@ -38,7 +38,7 @@ public class RemovePdf extends HttpServlet {
 				String name=request.getParameter("name");
 				ServletContext context = getServletContext();
 				File f=new File(context.getRealPath("/"+name+".pdf"));
-				ReaderXMLtest r=new ReaderXMLtest();
+				ReaderXMLtest r=ReaderXMLtest.getInstance();
 				r.removeLetter(name, context.getRealPath("files/Files.xml"));
 				if(f.delete()){
 					response.getWriter().println(f.getName() + " is deleted!");

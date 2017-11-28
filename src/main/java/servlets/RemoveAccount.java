@@ -37,7 +37,7 @@ public class RemoveAccount extends HttpServlet {
 		Data d=new Data();
 		// TODO Auto-generated method stub
 		String email=request.getParameter("mail");
-		ReaderXMLtest r=new ReaderXMLtest();
+		ReaderXMLtest r=ReaderXMLtest.getInstance();
 		ServletContext context = getServletContext();
 		String fullPath = d.getUrl()+"/Users";
 		r.removeUser(email, context.getRealPath("files/Users.xml"));
@@ -50,7 +50,7 @@ public class RemoveAccount extends HttpServlet {
 		Data d=new Data();
 		// TODO Auto-generated method stub
 		String email=request.getParameter("mail");
-		ReaderXMLtest r=new ReaderXMLtest();
+		ReaderXMLtest r=ReaderXMLtest.getInstance();
 		ServletContext context = getServletContext();
 		String fullPath = d.getUrl()+"/Users";
 		r.removeUser(email, context.getRealPath("files/Users.xml"));

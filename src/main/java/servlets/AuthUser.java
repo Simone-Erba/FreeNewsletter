@@ -46,7 +46,7 @@ public class AuthUser extends HttpServlet {
 		String pass=(String) request.getParameter("pass");
 		System.out.println("AUTH "+mail);
 		System.out.println("AUTH "+pass);
-		ReaderXMLtest r=new ReaderXMLtest();
+		ReaderXMLtest r=ReaderXMLtest.getInstance();
 		ServletContext context = getServletContext();
 		System.out.println(context.getContextPath());
 		System.out.println(context.getServerInfo());
